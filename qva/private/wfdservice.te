@@ -122,21 +122,16 @@ allowxperm wfdservice self:udp_socket ioctl priv_sock_ioctls;
 #Allow access to proc/net/arp
 allow wfdservice proc_net:file r_file_perms;
 
-#Allow for property access
-userdebug_or_eng(`
-get_prop(wfdservice, wfd_debug_prop)
-')
-
 #Allow the interaction with sigmahal_qti
 binder_call(wfdservice,vendor_sigmahal_qti)
 
 # Fix sink avc denials
 allow wfdservice mediametrics:binder call;
-allow wfdservice vendor_mm_osal_prop:file read;
-allow wfdservice vendor_mm_osal_prop:file open;
+# allow wfdservice vendor_mm_osal_prop:file read;
+# allow wfdservice vendor_mm_osal_prop:file open;
 allow wfdservice vendor_mm_osal_prop:file getattr;
 
 # Fix source avc denials
-allow wfdservice vendor_default_prop:file read;
-allow wfdservice vendor_default_prop:file open;
+# allow wfdservice vendor_default_prop:file read;
+# allow wfdservice vendor_default_prop:file open;
 allow wfdservice vendor_default_prop:file getattr;
